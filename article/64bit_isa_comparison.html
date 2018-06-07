@@ -12,6 +12,7 @@
 <ul>
 <li>x86_64: https://software.intel.com/en-us/articles/intel-sdm</li>
 <li>MIPS64: https://www.mips.com/products/architectures/mips64/</li>
+<li>MIPS SIMD: https://www.mips.com/products/architectures/ase/simd/</li>
 <li>ARM A64: https://static.docs.arm.com/dui0801/i/DUI0801I_armasm_user_guide.pdf</li>
 <li>Power: https://openpowerfoundation.org/?resource_lib=power-isa-version-3-0</li>
 <li>RISC-V: https://content.riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf</li>
@@ -137,8 +138,8 @@ A32/T32の汎用レジスタとのめんどくさい対応関係は略。</td>
     <td>SIMD概要</td>
     <td>大きく分けて MMX, SSE, AVX の3種がある。MMXは整数演算用、SSEは浮動小数点演算用、AVXは整数演算・浮動小数点演算の両方が使える(ただしAVXの整数演算はAVX2から)。MMX命令では64bitレジスタが8本あり、名前はMM0～MM7。これらはx87命令用レジスタと共用されており、使用する際はソフトウェア側でのステートの切り替えが必要。SSE命令、AVX命令のレジスタは「浮動小数点命令概要」のとおり。</td>
     <td>浮動小数点命令と共用のSIMDレジスタが32本ある。名前は128bitレジスタとしてアクセスするときはV0～V31、64bitレジスタとしてアクセスするときはD0-D31、32bitレジスタとしてアクセスするときはS0～S31、16bitレジスタとしてアクセスするときはH0～H31、8bitレジスタとしてアクセスするときはB0～B31。5番目の128bitレジスタの3番目のバイトはV5.B[3]などのような形でアクセスできる。</td>
-    <td>仕様書中に記述が見当たらない。</td>
-    <td>仕様書中に記述が見当たらない。</td>
+    <td>MSA(MIPS SIMD Architecture)という名前でサポートされる。拡張扱い。32本の128bitレジスタがあり、仕様書中での名前はWR0～WR31。これらのレジスタの下位64bitは浮動小数点命令と共有される(MSAをサポートする場合、CPUはIEEE754の64bit演算をサポートしなければならない)。</td>
+    <td>Vector Facilitiesという名前でサポートされる。32本の128bitレジスタがあり、名前はVR0～VR31。整数演算/浮動小数点演算共にサポートされている。</td>
     <td>SIMDは拡張命令とされている。サポートされる場合、SIMDレジスタは浮動小数点命令用レジスタと共用される。レジスタ幅は32bitから1024bitまでの値が実装ごとに選択される。</td>
   </tr>
 </tbody>
